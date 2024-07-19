@@ -1,6 +1,6 @@
 ## Data Fusion Python Server
 Server that receives data in a json struct with the following structure: 
-'''
+```
     nodes: [
         {
             ip: 
@@ -19,7 +19,7 @@ Server that receives data in a json struct with the following structure:
         }
         ...
     ]
-'''
+```
 And using a probabilistic approach uses the RSSI parameters to produce a probable distance between 
 nodes. Using these relative distances and Least Square Lateration, each node finds a new position. This 
 is fused with the nodes own GPS sensor data, accordingly to the covariances associated. 
