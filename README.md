@@ -1,7 +1,7 @@
 ## Data Fusion Python Server
 Server that receives data in a json struct with the following structure: 
 ```
-    nodes: [
+nodes: [
         {
             ip: 
             latitude:
@@ -11,7 +11,7 @@ Server that receives data in a json struct with the following structure:
         }
         ...
     ],
-    edges: [
+edges: [
         {
             source: 
             destination: 
@@ -33,9 +33,9 @@ produced position from the sensors.
 The server runs using flask, so to start it, it is sufficient to 
 run in the app directory
 ```
-    python app.py
+python app.py
 ```
 It establishes a web connection. It expects the JSON containing the sensor data 
 as a POST request. 
 It is built to receive requests from the cartography app implemented, that can be found 
-[here]{https://github.com/giuliaprosio/cartography-webapp}. 
+[here](https://github.com/giuliaprosio/cartography-webapp). 
