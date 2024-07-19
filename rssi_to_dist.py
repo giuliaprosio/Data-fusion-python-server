@@ -1,6 +1,10 @@
 # RSSI TO DISTANCE CONVERTER
 import math 
 
+MEASURED_POWER = -45 #-38
+N = 1.9 #2.3
+
+
 def rssiConversion(rssi): 
     """ Conversion of RSSI values into Distance in meters
     The empirical parameters are:  
@@ -11,11 +15,10 @@ def rssiConversion(rssi):
     from empirical data collected. 
 
     """
-    measured_power = -45 #-38 
-    N = 1.9 #2.3
+    global MEASURED_POWER, N
+   
     if(rssi is None): return None
-    #print("rssi value: ", rssi)
-    #print("DISTANCE", 10**(measured_power - rssi)/(10*N))
-    distance = 10 ** ((measured_power - rssi) / (10 * N))
-    #print(distance)
-    return distance #math.pow(10, (measured_power - rssi)/(10*N))
+    
+    distance = 10 ** ((MEASURED_POWER - rssi) / (10 * N))
+    
+    return distance 
