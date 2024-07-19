@@ -1,8 +1,3 @@
-# Implementing UKF for non-moving nodes 
-
-# Unscented Kalman Filters take into account nonlinearities of the problem, of the noises and of the model 
-# Let's try a first experiment of it 
-
 from filterpy.kalman import UnscentedKalmanFilter as UKF
 import numpy as np
 from filterpy.common import Q_discrete_white_noise
@@ -12,12 +7,8 @@ from mercator_converter import *
 import numpy as np
 import numpy.linalg as lin
 
-# Need for a structure where I save lat and lng from t-1 that will be the 
-# state at t-1 used to make the prediction on t
-
 state_t_minus_one = np.empty((0, 3))
 dt = 5.0
-
 
 class Filter:
 
@@ -38,8 +29,7 @@ class Filter:
                     [x0, y0] = toCartesian(initial_lat, initial_lng)
                     self.ukfs[node['associatedRouterName']].x = np.array([x0, 0, y0, 0])
                     self.ukfs[node['associatedRouterName']].Q = np.diag([node['new_variance'], 0.5, node['new_variance'], 0.5])
-                    #print("UKF VARIANCE: NODE: ", node['associatedRouterName'], self.ukfs[node['associatedRouterName']].Q )
-
+                    
     def apply_filter(self, nodes):
 
         # for each node, ukf
@@ -60,7 +50,6 @@ def state_transition_function(x, dt):
 def measurement_function(x): 
     """ measurement function is the output of the Least Square Lateration of RSSI values """
 
-    #H = np.array([[1,0], [0,1]])
     return x[[0,2]]
 
 Q_scale_factor = 10000
